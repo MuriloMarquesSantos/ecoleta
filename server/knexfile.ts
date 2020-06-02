@@ -8,6 +8,7 @@ module.exports = {
         password: 'root',
         database: 'ecoleta'
     },
+    useNullAsDefault: true,
     migrations: {
         directory: path.resolve(__dirname, 'src', 'database', 'migrations')
     }
