@@ -38,21 +38,37 @@ class PointsController {
             }
         })
 
-        trx('point_items').insert(point_items)
+        await trx('point_items').insert(point_items)
             .then(trx.commit)
-            .catch(trx.rollback);
+            .catch(() => {
+                trx.rollback;
+                return response.status(400).json({ message: 'Error during Point creation' })
+            })
 
-        return response.json({
+        return response.status(201).json({
             id: point_id,
             ...point
         });
     }
 
-    async getById(request: Request, response: Response) {
+    getById = async (request: Request, response: Response) => {
         const pointId = request.param('id');
-        
-        const foundPoint = await knex('points').select('*').where('id', pointId);
-        return response.json(foundPoint);
+
+        const foundPoint = await knex('points').select('*').where('id', pointId).first();
+
+        const pointItems = await this.getPointItems(foundPoint.id);
+
+        if (!foundPoint) {
+            return response.status(404).json({ message: 'Point not found' });
+        }
+
+        return response.json({ foundPoint, pointItems });
+    }
+
+    getPointItems = async (id: number) => {
+        return knex('items')
+            .join('point_items', 'items.id', '=', 'point_items.item_id')
+            .where('point_items.point_id', id);
     }
 }
 
