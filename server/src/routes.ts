@@ -18,6 +18,6 @@ routes.get('/items', itemsController.getItems);
 
 routes.post('/points', pointsController.createPoint);
 routes.get('/points/:id', pointsController.getById);
-
+routes.get('/points', pointsController.getPoints);
 
 export default routes;
