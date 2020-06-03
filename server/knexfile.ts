@@ -9,6 +9,9 @@ module.exports = {
         database: 'ecoleta'
     },
     useNullAsDefault: true,
+    seeds: {
+        directory: path.resolve(__dirname, 'src', 'database', 'seeds')
+    },
     migrations: {
         directory: path.resolve(__dirname, 'src', 'database', 'migrations')
     }
