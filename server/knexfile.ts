@@ -8,7 +8,6 @@ module.exports = {
         password: 'root',
         database: 'ecoleta'
     },
-    useNullAsDefault: true,
     seeds: {
         directory: path.resolve(__dirname, 'src', 'database', 'seeds')
     },
