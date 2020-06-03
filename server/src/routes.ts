@@ -17,5 +17,7 @@ routes.use('/uploads', uploads);
 routes.get('/items', itemsController.getItems);
 
 routes.post('/points', pointsController.createPoint);
+routes.get('/points/:id', pointsController.getById);
+
 
 export default routes;

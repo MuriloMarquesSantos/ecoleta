@@ -47,6 +47,13 @@ class PointsController {
             ...point
         });
     }
+
+    async getById(request: Request, response: Response) {
+        const pointId = request.param('id');
+        
+        const foundPoint = await knex('points').select('*').where('id', pointId);
+        return response.json(foundPoint);
+    }
 }
 
 export default PointsController;
