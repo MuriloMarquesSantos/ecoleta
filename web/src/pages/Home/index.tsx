@@ -14,8 +14,8 @@ const Home = () => {
                     <img src={logo} alt="Ecoleta" />
                 </header>
                 <main>
-                    <h1>Seu Market Place de coleta de Resíduos.</h1>
-                    <p>Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente</p>
+                    <h1>Seu Marketplace de coleta de resíduos.</h1>
+                    <p>Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente.</p>
                     <a href="algo">
                         <span>
                             <FiLogIn/>
