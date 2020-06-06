@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Button, Text, View, Image, ImageBackground } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
-import { Feather as Icon} from '@expo/vector-icons';
+import { Feather as Icon } from '@expo/vector-icons';
 
 
 
@@ -10,7 +10,7 @@ export default function Home() {
         <ImageBackground
             source={require('../../assets/home-background.png')}
             style={styles.container}
-            imageStyle={{ width: 274, height: 368}}
+            imageStyle={{ width: 274, height: 368 }}
         >
             <View style={styles.main}>
                 <Image source={require('../../assets/logo.png')} />
@@ -21,9 +21,9 @@ export default function Home() {
             <View style={styles.footer}>
                 <RectButton style={styles.button}>
                     <View style={styles.buttonIcon}>
-                        <Icon name="arrow-right" color="#FFF" size={24}/>
+                        <Icon name="arrow-right" color="#FFF" size={24} />
                     </View>
-                    <Text style={styles.buttonText} onPress={() => {}}>Entrar</Text>
+                    <Text style={styles.buttonText} onPress={() => { }}>Entrar</Text>
                 </RectButton>
 
             </View>
