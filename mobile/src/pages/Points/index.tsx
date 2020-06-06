@@ -16,6 +16,7 @@ interface Item {
 const Points = () => {
     const [points, setPoints] = useState([]);
     const [items, setItems] = useState<Item[]>([]);
+    const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
     useEffect(() => {
         const getPoints = async () => {
@@ -40,6 +41,16 @@ const Points = () => {
 
     function handleNavigateToDetails() {
         navigation.navigate('Detail');
+    }
+
+    function handleSelectItem(id: number) {
+        if (!selectedItems.includes(id)) {
+            setSelectedItems(selectedItems => [...selectedItems, id]);
+        } else {
+            setSelectedItems(selectedItems.filter((item) => {
+                return item !== id;
+            }))
+        }
     }
 
     return (
@@ -71,7 +82,7 @@ const Points = () => {
                                 longitude: -46.6565765
                             }}
                         >
-                            <View style={styles.mapMarkerContainer}>
+                            <View style={styles.mapMarkerContainer} >
                                 <Image style={styles.mapMarkerImage} source={{ uri: "https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=50" }} />
                                 <Text style={styles.mapMarkerTitle}>Mercado</Text>
                             </View>
@@ -89,7 +100,13 @@ const Points = () => {
                     {
                         items.map(item => {
                             return (
-                                <TouchableOpacity style={styles.item}>
+                                <TouchableOpacity key={String(item.id)}
+                                    style={[
+                                        styles.item,
+                                        selectedItems.includes(item.id) ? styles.selectedItem : {}
+                                    ]}
+                                    onPress={() => handleSelectItem(item.id)}
+                                >
                                     <SvgUri width={42} height={42} uri={item.image_url} />
                                     <Text style={styles.itemTitle}>{item.title}</Text>
                                 </TouchableOpacity>
