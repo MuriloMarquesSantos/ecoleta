@@ -1,13 +1,82 @@
 import React from 'react';
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
 import { Feather as Icon } from '@expo/vector-icons';
 import Constants from 'expo-constants';
+import { useNavigation } from '@react-navigation/native';
+import MapView, { Marker } from 'react-native-maps';
+
+import { SvgUri } from 'react-native-svg';
 
 export default function Points() {
-    return (
-        <View style={styles.container}>
+    const navigation = useNavigation();
 
-        </View>
+    function handleNavigateBackToHome() {
+        navigation.goBack();
+    }
+
+    return (
+        <>
+            <View style={styles.container}>
+                <TouchableOpacity onPress={handleNavigateBackToHome}>
+                    <Icon
+                        name="arrow-left"
+                        size={20}
+                        color="#34cb79"
+                    />
+                </TouchableOpacity>
+                <Text style={styles.title}>Bem vindo.</Text>
+                <Text style={styles.description}>Encontre no mapa um ponto de coleta.</Text>
+                <View style={styles.mapContainer}>
+                    <MapView
+                        style={styles.map}
+                        initialRegion={{
+                            latitude: -23.5630994,
+                            longitude: -46.6565765,
+                            latitudeDelta: 0.014,
+                            longitudeDelta: 0.014
+                        }}>
+                        <Marker
+                            coordinate={{
+                                latitude: -23.5630994,
+                                longitude: -46.6565765
+                            }}
+                        />
+                    </MapView>
+                </View>
+            </View>
+            <View style={styles.itemsContainer}>
+                <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={{ paddingHorizontal: 20 }}
+                >
+                    <TouchableOpacity style={styles.item}>
+                        <SvgUri width={42} height={42} uri="http://192.168.15.16:3333/uploads/lampadas.svg" />
+                        <Text style={styles.itemTitle}>Lâmpadas</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.item}>
+                        <SvgUri width={42} height={42} uri="http://192.168.15.16:3333/uploads/lampadas.svg" />
+                        <Text style={styles.itemTitle}>Lâmpadas</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.item}>
+                        <SvgUri width={42} height={42} uri="http://192.168.15.16:3333/uploads/lampadas.svg" />
+                        <Text style={styles.itemTitle}>Lâmpadas</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.item}>
+                        <SvgUri width={42} height={42} uri="http://192.168.15.16:3333/uploads/lampadas.svg" />
+                        <Text style={styles.itemTitle}>Lâmpadas</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.item}>
+                        <SvgUri width={42} height={42} uri="http://192.168.15.16:3333/uploads/lampadas.svg" />
+                        <Text style={styles.itemTitle}>Lâmpadas</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.item}>
+                        <SvgUri width={42} height={42} uri="http://192.168.15.16:3333/uploads/lampadas.svg" />
+                        <Text style={styles.itemTitle}>Lâmpadas</Text>
+                    </TouchableOpacity>
+                </ScrollView>
+            </View>
+        </>
     )
 }
 
@@ -84,7 +153,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#eee',
         height: 120,
-        width: 120,
+        width: 105,
         borderRadius: 8,
         paddingHorizontal: 16,
         paddingTop: 20,
