@@ -6,7 +6,7 @@
 - [Summary](#Summary)
 - [Technologies used](#tech-used)
 - [How-to](#how-to)
-
+- [Postman Doc](#postman)
 <a id="summary"></a>
 
 ## :bookmark: Summary
@@ -23,7 +23,7 @@ Supermarkets, stores and volunteers may register their recycling points and its 
 
 ## Technologies used
 
-<a id="tech-used">tech-used</a>
+<a id="tech-used"></a>
 
 The project was developed with these technologies:
 
@@ -76,7 +76,7 @@ The project was developed with these technologies:
   $ cd mobile
   $ npm start
 ```
-
+<a id="postman"></a>
 ## Postman Documentation
 
 I have prepared a postman documentation, in which you will be able to check in details each endpoint and possible Requests and responses.
