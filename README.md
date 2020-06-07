@@ -5,8 +5,7 @@
 
 - [Summary](#Summary)
 - [Technologies used](#tech-used)
-- [Como Usar](#como-usar)
-- [Como Contribuir](#como-contribuir)
+- [How-to)(#how-to)
 
 <a id="summary"></a>
 
@@ -45,7 +44,7 @@ The project was developed with these technologies:
 
 <img alt="Logo" title="#logo" width="150px" src="mobile/assets/Screen Shot 2020-06-07 at 19.12.16.png">
 
-<a id="how-to-run"></a>
+<a id="how-to"></a>
 
 ## How to run
 
