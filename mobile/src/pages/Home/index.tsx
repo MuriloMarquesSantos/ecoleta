@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { StyleSheet, Button, Text, View, Image, ImageBackground } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Button, Text, View, Image, ImageBackground, TextInput, KeyboardAvoidingView } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { Feather as Icon } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -8,32 +8,58 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function Home() {
     const navigation = useNavigation();
+    const[uf, setUf] = useState('');
+    const[city, setCity] = useState('');
 
     function handleNavigateToPoints() {
-        navigation.navigate('Points')
+        navigation.navigate('Points', {
+            uf,
+            city
+        })
     }
+
     return (
-        <ImageBackground
-            source={require('../../assets/home-background.png')}
-            style={styles.container}
-            imageStyle={{ width: 274, height: 368 }}
-        >
-            <View style={styles.main}>
-                <Image source={require('../../assets/logo.png')} />
-                <Text style={styles.title}>Seu marketplace de coleta de resíduos</Text>
-                <Text style={styles.description}>Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente.</Text>
-            </View>
-
-            <View style={styles.footer}>
-                <RectButton style={styles.button}>
-                    <View style={styles.buttonIcon}>
-                        <Icon name="arrow-right" color="#FFF" size={24} />
+        <KeyboardAvoidingView style={{ flex: 1 }}>
+            <ImageBackground
+                source={require('../../assets/home-background.png')}
+                style={styles.container}
+                imageStyle={{ width: 274, height: 368 }}
+            >
+                <View style={styles.main}>
+                    <Image source={require('../../assets/logo.png')} />
+                    <View>
+                        <Text style={styles.title}>Seu marketplace de coleta de resíduos</Text>
+                        <Text style={styles.description}>Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente.</Text>
                     </View>
-                    <Text style={styles.buttonText} onPress={handleNavigateToPoints}>Entrar</Text>
-                </RectButton>
+                </View>
 
-            </View>
-        </ImageBackground>
+                <View style={styles.footer}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Digite a UF"
+                        value={uf}
+                        maxLength={2}
+                        autoCapitalize="characters"
+                        onChangeText={text => setUf(text)}
+                    />
+
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Digite a cidade"
+                        value={city}
+                        autoCorrect={false}
+                        onChangeText={text => setCity(text)}
+                    />
+                    <RectButton style={styles.button}>
+                        <View style={styles.buttonIcon}>
+                            <Icon name="arrow-right" color="#FFF" size={24} />
+                        </View>
+                        <Text style={styles.buttonText} onPress={handleNavigateToPoints}>Entrar</Text>
+                    </RectButton>
+
+                </View>
+            </ImageBackground>
+        </KeyboardAvoidingView>
     )
 }
 
@@ -53,7 +79,7 @@ const styles = StyleSheet.create({
         fontSize: 32,
         fontFamily: 'Ubuntu_700Bold',
         maxWidth: 260,
-        marginTop: 64,
+        marginTop: 16,
     },
 
     description: {
@@ -62,7 +88,7 @@ const styles = StyleSheet.create({
         marginTop: 16,
         fontFamily: 'Roboto_400Regular',
         maxWidth: 260,
-        lineHeight: 24,
+        lineHeight: 16,
     },
 
     footer: {},

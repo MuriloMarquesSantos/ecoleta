@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, StyleSheet, View, Image, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { Feather as Icon } from '@expo/vector-icons';
 import Constants from 'expo-constants';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import MapView, { Marker } from 'react-native-maps';
 import { SvgUri } from 'react-native-svg';
 import api from '../../services/api';
@@ -22,30 +22,28 @@ interface Point {
     longitude: number,
 }
 
+interface Params {
+    uf: string,
+    city: string
+}
+
 const Points = () => {
     const [points, setPoints] = useState<Point[]>([]);
     const [items, setItems] = useState<Item[]>([]);
-    const [selectedItems, setSelectedItems] = useState<number[]>([]);
+    const [selectedItems, setSelectedItems] = useState<number[]>([0]);
     const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]);
 
-    useEffect(() => {
-        const getPoints = async () => {
-            const response = await api.get('/points', {
-                params: {
-                    city: "Aguaí",
-                    uf: "SP",
-                    items: [1]
-                }
-            })
-            setPoints(response.data);
-            console.log("calling get points");
-            console.log(response.data);
-        }
+    const route = useRoute();
 
+    const routeParams = route.params as Params;
+
+    useEffect(() => {
         const getItems = async () => {
+            console.log("---Calling get Items inside Points component---");
             const response = await api.get("/items");
             setItems(response.data);
-            console.log(response.data);
+            console.log(`---Finished get Items inside Points component---
+            ${response.data}`)
         }
 
         const loadPosition = async () => {
@@ -69,11 +67,26 @@ const Points = () => {
 
             setInitialPosition([latitude, longitude]);
         }
-
-        getPoints();
         getItems();
         loadPosition();
     }, [])
+
+    useEffect(() => {
+        const getPoints = async () => {
+            console.log("--Calling Get points inside Points component");
+            const response = await api.get('/points', {
+                params: {
+                    city: routeParams.city,
+                    uf: routeParams.uf,
+                    items: selectedItems
+                }
+            })
+            setPoints(response.data);
+            console.log(`--Finished Calling Get points inside Points component: 
+            ${response.data} `);
+        }
+        getPoints();
+    }, [selectedItems])
 
     const navigation = useNavigation();
 
