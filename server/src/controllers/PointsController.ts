@@ -6,17 +6,21 @@ class PointsController {
     async getPoints(request: Request, response: Response) {
         const { city, uf, items } = request.query;
 
+        const cityQuery = city ? city : "";
+        const ufQuery = uf ? uf : "";
+        const itemsQuery = items ? items : [0];
+
         console.log(`${city}, ${uf}, ${items}`);
 
-        const parsedItems = String(items)
+        const parsedItems = String(itemsQuery)
             .split(',')
             .map(item => Number(item.trim()));
 
         const points = await knex('points')
             .join('point_items', 'points.id', '=', 'point_items.point_id')
             .whereIn('point_items.item_id', parsedItems)
-            .where('city', String(city))
-            .where('uf', String(uf))
+            .where('city', String(cityQuery))
+            .where('uf', String(ufQuery))
             .distinct()
             .select('points.*');
 

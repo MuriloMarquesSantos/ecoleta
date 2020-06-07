@@ -50,7 +50,7 @@ export default function Detail() {
     }
 
     function handleWhatsapp() {
-        Linking.openURL(`whatsapp://send?phone=${data.foundPoint.whatsapp}&text=Tenho interessa na coleta de resíduos`);
+        Linking.openURL(`whatsapp://send?phone=${data.foundPoint.whatsapp}&text=Tenho interessa na coleta de resíduos`)
     }
 
     if (!data.foundPoint) {

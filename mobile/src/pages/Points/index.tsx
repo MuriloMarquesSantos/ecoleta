@@ -30,7 +30,7 @@ interface Params {
 const Points = () => {
     const [points, setPoints] = useState<Point[]>([]);
     const [items, setItems] = useState<Item[]>([]);
-    const [selectedItems, setSelectedItems] = useState<number[]>([0]);
+    const [selectedItems, setSelectedItems] = useState<number[]>([]);
     const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]);
 
     const route = useRoute();
@@ -39,10 +39,9 @@ const Points = () => {
 
     useEffect(() => {
         const getItems = async () => {
-            console.log("---Calling get Items inside Points component---");
             const response = await api.get("/items");
             setItems(response.data);
-            console.log(`---Finished get Items inside Points component---`);
+            console.log(response.data);
         }
 
         const loadPosition = async () => {
@@ -72,7 +71,6 @@ const Points = () => {
 
     useEffect(() => {
         const getPoints = async () => {
-            console.log("--Calling Get points inside Points component");
             const response = await api.get('/points', {
                 params: {
                     city: routeParams.city,
@@ -81,7 +79,8 @@ const Points = () => {
                 }
             })
             setPoints(response.data);
-            console.log(`--Finished Calling Get points inside Points component`);
+            console.log("calling get points");
+            console.log(response.data);
         }
         getPoints();
     }, [selectedItems])
