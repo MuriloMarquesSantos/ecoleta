@@ -76,3 +76,24 @@ The project was developed with these technologies:
   $ cd mobile
   $ npm start
 ```
+
+## Postman Documentation
+
+I have prepared a postman documentation, in which you will be able to check in details each endpoint and possible Requests and responses.
+
+Please access it by link below:
+
+```
+https://documenter.getpostman.com/view/4694407/SztK35Rf?version=latest
+```
+
+### Contributors
+
+- Murilo M. Santos <murilommms@gmail.com>
+
+---
+
+
+## Support
+
+* If you have any query or doubt, please, feel free to contact me by e-mail.
