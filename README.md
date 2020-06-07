@@ -9,7 +9,7 @@
 - [Postman Doc](#postman)
 <a id="summary"></a>
 
-## :bookmark: Summary
+## Summary
 
 For the sake of simplicity, this repository contains:
 - Server (Built in node.js with MySQL and Knex.js to connect them)
@@ -34,7 +34,7 @@ The project was developed with these technologies:
 - [MySQL](https://www.mysql.com)
 - [Knex](http://knexjs.org)
 
-## :heavy_check_mark: Result:
+## Result:
 
 - You can check the design layout at: **[Figma](https://www.figma.com/file/1SxgOMojOB2zYT0Mdk28lB/)**;
 
@@ -68,11 +68,11 @@ The project was developed with these technologies:
   # Start server (For further information about scripts, please check package.json)
   $ npm run dev
 
-  # Start web application
+  # run web application
   $ cd web
   $ npm start
 
-  # Start Mobile application
+  # Run app application
   $ cd mobile
   $ npm start
 ```
