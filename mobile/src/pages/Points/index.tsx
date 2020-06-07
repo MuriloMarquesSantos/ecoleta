@@ -42,8 +42,7 @@ const Points = () => {
             console.log("---Calling get Items inside Points component---");
             const response = await api.get("/items");
             setItems(response.data);
-            console.log(`---Finished get Items inside Points component---
-            ${response.data}`)
+            console.log(`---Finished get Items inside Points component---`);
         }
 
         const loadPosition = async () => {
@@ -82,8 +81,7 @@ const Points = () => {
                 }
             })
             setPoints(response.data);
-            console.log(`--Finished Calling Get points inside Points component: 
-            ${response.data} `);
+            console.log(`--Finished Calling Get points inside Points component`);
         }
         getPoints();
     }, [selectedItems])
