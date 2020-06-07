@@ -5,7 +5,7 @@
 
 - [Summary](#Summary)
 - [Technologies used](#tech-used)
-- [How-to)(#how-to)
+- [How-to](#how-to)
 
 <a id="summary"></a>
 
