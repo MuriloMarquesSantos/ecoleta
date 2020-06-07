@@ -6,6 +6,7 @@ import { Map, TileLayer, Marker } from 'react-leaflet';
 import { LeafletMouseEvent } from 'leaflet';
 import api from '../../services/api';
 import ibgeApi from '../../services/ibgeApi';
+import Dropzone from '../../components/Dropzone';
 
 import './styles.css';
 
@@ -38,6 +39,7 @@ const CreatePoint = () => {
     })
     const [selectedPosition, setSelectedPosition] = useState<[number, number]>([-23.5630994, -46.6565765]);
     const [selectedItems, setSelectedItems] = useState<number[]>([]);
+    const [selectedFile, setSelectedFile] = useState<File>();
 
     useEffect(() => {
         const getItems = async () => {
@@ -94,19 +96,29 @@ const CreatePoint = () => {
         }
     }
 
+    function onFileUploaded(file: File) {
+        setSelectedFile(file);
+    }
+
     async function handleSubmit(event: FormEvent) {
         event.preventDefault();
-        const point = {
-            name: formData.name,
-            email: formData.email,
-            whatsapp: formData.whatsapp,
-            latitude: selectedPosition[0],
-            longitude: selectedPosition[1],
-            city: selectedCity,
-            uf: selectedUf,
-            items: selectedItems
+
+        const data = new FormData();
+
+        data.append('name', formData.name);
+        data.append('email', formData.email);
+        data.append('whatsapp', formData.whatsapp);
+        data.append('latitude', String(selectedPosition[0]));
+        data.append('longitude', String(selectedPosition[1]));
+        data.append('city', selectedCity);
+        data.append('uf', selectedUf);
+        data.append('items', selectedItems.join(','));
+
+        if (selectedFile) {
+            data.append('image', selectedFile);
         }
-        await api.post('points', point);
+
+        await api.post('points', data);
 
         alert('ponto de coleta criado!');
 
@@ -124,7 +136,7 @@ const CreatePoint = () => {
             </header>
             <form onSubmit={handleSubmit}>
                 <h1>Cadastro do <br /> ponto de coleta</h1>
-
+                <Dropzone onFileUploaded={onFileUploaded} />
                 <fieldset>
                     <legend>
                         <h2>Dados</h2>

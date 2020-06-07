@@ -14,6 +14,7 @@ interface Params {
 interface Data {
     foundPoint: {
         image: string,
+        image_url: string
         name: string,
         email: string,
         whatsapp: string,
@@ -67,7 +68,7 @@ export default function Detail() {
                         color="#34cb79"
                     />
                 </TouchableOpacity>
-                <Image style={styles.pointImage} source={{ uri: data.foundPoint.image }} />
+                <Image style={styles.pointImage} source={{ uri: data.foundPoint.image_url }} />
                 <Text style={styles.pointName}>{data.foundPoint.name}</Text>
                 <Text style={styles.pointItems}>
                     {data.pointItems.map(item => item.title).join(', ')}
