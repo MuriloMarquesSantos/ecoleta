@@ -48,8 +48,10 @@ class PointsController {
 
         const trx = await knex.transaction();
 
+        const imageToBeAdded = request.file ? request.file.filename : "";
+
         const point = {
-            image: request.file.filename,
+            image: imageToBeAdded,
             name,
             email,
             whatsapp,
